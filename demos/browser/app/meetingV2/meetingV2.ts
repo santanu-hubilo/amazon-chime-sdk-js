@@ -52,6 +52,7 @@ import {
   NoOpVideoFrameProcessor,
   RemovableAnalyserNode,
   SimulcastLayers,
+  SimulcastUplinkPolicyNScaleLowStream,
   Transcript,
   TranscriptEvent,
   TranscriptionStatus,
@@ -532,6 +533,17 @@ export class DemoMeetingApp
     if (!this.defaultBrowserBehaviour.hasChromiumWebRTC()) {
       (document.getElementById('simulcast') as HTMLInputElement).disabled = true;
     }
+    document.getElementById('simulcast').addEventListener('change', _e => {
+      const enableSimulcast = (document.getElementById('simulcast') as HTMLInputElement).checked;
+
+      const simulcastPolicyElem = document.getElementById('simulcast-policy') as HTMLSelectElement;
+
+      if (enableSimulcast) {
+        simulcastPolicyElem.style.display = 'block';
+      } else {
+        simulcastPolicyElem.style.display = 'none';
+      }
+    });
 
     if (!this.defaultBrowserBehaviour.supportDownlinkBandwidthEstimation()) {
       (document.getElementById('priority-downlink-policy') as HTMLInputElement).disabled = true;
@@ -1613,6 +1625,12 @@ export class DemoMeetingApp
       configuration.attendeePresenceTimeoutMs = Number(timeoutMs);
     }
     configuration.enableSimulcastForUnifiedPlanChromiumBasedBrowsers = this.enableSimulcast;
+    if (this.enableSimulcast) {
+      const policy = (document.getElementById('simulcast-policy') as HTMLSelectElement).value;
+      if (policy === 'nscale-lower') {
+        configuration.videoUplinkBandwidthPolicy = new SimulcastUplinkPolicyNScaleLowStream(configuration.credentials.attendeeId, this.meetingLogger);
+      }
+    }
     if (this.usePriorityBasedDownlinkPolicy) {
       this.priorityBasedDownlinkPolicy = new VideoPriorityBasedPolicy(this.meetingLogger, this.videoPriorityBasedPolicyConfig);
       configuration.videoDownlinkBandwidthPolicy = this.priorityBasedDownlinkPolicy;
