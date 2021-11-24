@@ -96,12 +96,14 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="sdp.html#clone" class="tsd-kind-icon">clone</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="sdp.html#copyvideo" class="tsd-kind-icon">copy<wbr>Video</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="sdp.html#ensureh264inreceivesections" class="tsd-kind-icon">ensure<wbr>H264<wbr>InReceive<wbr>Sections</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="sdp.html#hascandidates" class="tsd-kind-icon">has<wbr>Candidates</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="sdp.html#hascandidatesforallmlines" class="tsd-kind-icon">has<wbr>Candidates<wbr>For<wbr>AllMLines</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="sdp.html#lines" class="tsd-kind-icon">lines</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="sdp.html#preferh264ifexists" class="tsd-kind-icon">prefer<wbr>H264<wbr>IfExists</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="sdp.html#removeh264supportfromsendsection" class="tsd-kind-icon">remove<wbr>H264<wbr>Support<wbr>From<wbr>Send<wbr>Section</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="sdp.html#ssrcforvideosendingsection" class="tsd-kind-icon">ssrc<wbr>For<wbr>Video<wbr>Sending<wbr>Section</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="sdp.html#videosectiondirections" class="tsd-kind-icon">video<wbr>Section<wbr>Directions</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="sdp.html#videosendsectionhasdifferentssrc" class="tsd-kind-icon">video<wbr>Send<wbr>Section<wbr>Has<wbr>DifferentSSRC</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="sdp.html#withaudiomaxaveragebitrate" class="tsd-kind-icon">with<wbr>Audio<wbr>Max<wbr>Average<wbr>Bitrate</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="sdp.html#withbandwidthrestriction" class="tsd-kind-icon">with<wbr>Bandwidth<wbr>Restriction</a></li>
@@ -162,6 +164,28 @@
 									<h5>otherSDP: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="sdp.html" class="tsd-signature-type">SDP</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="ensureh264inreceivesections" class="tsd-anchor"></a>
+					<h3>ensure<wbr>H264<wbr>InReceive<wbr>Sections</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">ensure<wbr>H264<wbr>InReceive<wbr>Sections<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="sdp.html" class="tsd-signature-type">SDP</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/aws/amazon-chime-sdk-js/blob/master/src/sdp/SDP.ts#L96">src/sdp/SDP.ts:96</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Removes any trailing inactive sections.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <a href="sdp.html" class="tsd-signature-type">SDP</a></h4>
 						</li>
 					</ul>
@@ -295,6 +319,28 @@
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="videosectiondirections" class="tsd-anchor"></a>
+					<h3>video<wbr>Section<wbr>Directions</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">video<wbr>Section<wbr>Directions<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">RTCRtpTransceiverDirection</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/aws/amazon-chime-sdk-js/blob/master/src/sdp/SDP.ts#L91">src/sdp/SDP.ts:91</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Removes H.264 from the send section.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">RTCRtpTransceiverDirection</span><span class="tsd-signature-symbol">[]</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -505,6 +551,9 @@
 								<a href="sdp.html#copyvideo" class="tsd-kind-icon">copy<wbr>Video</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="sdp.html#ensureh264inreceivesections" class="tsd-kind-icon">ensure<wbr>H264<wbr>InReceive<wbr>Sections</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="sdp.html#hascandidates" class="tsd-kind-icon">has<wbr>Candidates</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
@@ -521,6 +570,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="sdp.html#ssrcforvideosendingsection" class="tsd-kind-icon">ssrc<wbr>For<wbr>Video<wbr>Sending<wbr>Section</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="sdp.html#videosectiondirections" class="tsd-kind-icon">video<wbr>Section<wbr>Directions</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="sdp.html#videosendsectionhasdifferentssrc" class="tsd-kind-icon">video<wbr>Send<wbr>Section<wbr>Has<wbr>DifferentSSRC</a>

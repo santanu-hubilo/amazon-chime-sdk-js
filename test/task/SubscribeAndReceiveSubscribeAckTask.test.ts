@@ -86,6 +86,7 @@ describe('SubscribeAndReceiveSubscribeAckTask', () => {
     context.videoCaptureAndEncodeParameter = captureAndEncodeParameters;
     const videoStreamIndex = new DefaultVideoStreamIndex(context.logger);
     context.videoStreamIndex = videoStreamIndex;
+    context.videoSubscriptions = [1, 2, 3];
     const frame = SdkSubscribeAckFrame.create();
     frame.sdpAnswer = sdpAnswer;
 

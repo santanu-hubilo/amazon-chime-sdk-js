@@ -559,4 +559,68 @@ export default class DefaultSDP implements SDP {
     const newSDP = sections.join('');
     return new DefaultSDP(newSDP);
   }
+
+  videoSectionDirections(): RTCRtpTransceiverDirection[] {
+    const sections = DefaultSDP.splitSections(this.sdp);
+    const directions: RTCRtpTransceiverDirection[] = [];
+    for (let i = 0; i < sections.length; i++) {
+      if (/^m=video/.test(sections[i])) {
+        const lines = DefaultSDP.splitLines(sections[i]);
+        for (const line of lines) {
+          if (line.startsWith('a=inactive')) {
+            directions.push('inactive');
+          } else if (line.startsWith('a=sendonly')) {
+            directions.push('sendonly');
+          } else if (line.startsWith('a=recvonly')) {
+            directions.push('recvonly');
+          } else if (line.startsWith('a=sendrecv')) {
+            directions.push('sendrecv');
+          } else {
+            continue;
+          }
+          break;
+        }
+      }
+    }
+    return directions;
+  }
+
+  ensureH264InReceiveSections(): DefaultSDP {
+    const srcSDP: string = this.sdp;
+    const sections = DefaultSDP.splitSections(srcSDP);
+    if (sections.length < 2) {
+      return new DefaultSDP(this.sdp);
+    }
+    const newSections = [];
+    for (let i = 0; i < sections.length; i++) {
+      if (/^m=video/.test(sections[i])) {
+        const lines = DefaultSDP.splitLines(sections[i]);
+        let alreadyHasH264 = false;
+        lines.forEach(attribute => {
+          if (/^a=rtpmap:/.test(attribute)) {
+            if (attribute.toLowerCase().includes('h264')) {
+              alreadyHasH264 = true;
+            }
+          }
+        });
+
+        if (!alreadyHasH264) {
+          const mline = lines[0].split(' ');
+          mline.push('126');
+          lines[0] = mline.join(' ');
+
+          lines.push(
+            `a=fmtp:126 profile-level-id=42e01f;level-asymmetry-allowed=1;packetization-mode=1`
+          );
+          lines.push(`a=rtpmap:126 H264/90000`);
+          sections[i] = lines.join(DefaultSDP.CRLF) + DefaultSDP.CRLF;
+        } else {
+        }
+      }
+
+      newSections.push(sections[i]);
+    }
+    const newSdp = newSections.join('');
+    return new DefaultSDP(newSdp);
+  }
 }

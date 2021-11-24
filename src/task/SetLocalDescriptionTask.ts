@@ -37,6 +37,8 @@ export default class SetLocalDescriptionTask extends BaseTask {
       // This will be negotiatiated with backend, and we will only use it to skip resubscribes
       // if we confirm support/negotiation via `RTCRtpTranceiver.sender.getParams`
       sdp = new DefaultSDP(sdp).withVideoLayersAllocationRtpHeaderExtension().sdp;
+    } else {
+      sdp = new DefaultSDP(sdp).ensureH264InReceiveSections().sdp;
     }
     if (new DefaultBrowserBehavior().requiresDisablingH264Encoding()) {
       sdp = new DefaultSDP(sdp).removeH264SupportFromSendSection().sdp;
