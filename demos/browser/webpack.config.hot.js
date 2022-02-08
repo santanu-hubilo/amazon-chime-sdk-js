@@ -32,16 +32,16 @@ module.exports = env => {
         // which app finally made it through the gauntlet.
         process.env.npm_config_app = app;
         const { serve } = require('./server.js');
-        serve('127.0.0.1:8081');
+        serve('0.0.0.0:8081');
       },
       static: {
         publicPath: '/',
       },
       port: 8080,
       proxy: {
-        '/join': 'http://127.0.0.1:8081',
-        '/end': 'http://127.0.0.1:8081',
-        '/fetch_credentials': 'http://127.0.0.1:8081',
+        '/join': 'http://0.0.0.0:8081',
+        '/end': 'http://0.0.0.0:8081',
+        '/fetch_credentials': 'http://0.0.0.0:8081',
       }
     },
     plugins: [
